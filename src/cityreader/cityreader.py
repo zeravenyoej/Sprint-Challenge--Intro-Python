@@ -1,5 +1,9 @@
+import csv
+import textwrap
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+
+# print(dir(csvc))
 class City: 
     def __init__(self, name, lat, lon):
         self.name = name
@@ -22,12 +26,38 @@ class City:
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
 cities = []
-
 def cityreader(cities=[]):
   # TODO Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
   # `cities` list
+    path = "./src/cityreader/cities.csv"
+    with open(path, newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            # print(", ".join(row))
+            x = City(row[0], row[3], row[4])
+            cities.append(x)
     
+    # file = open(path, newline="")
+    # print(reader)
+    # header = next(reader)
+    # data = [row for row in reader]
+    # print(header)
+    # print(data[0])
+    # data = []
+    # for row in reader:
+    #     city = str(row[0])
+    #     state = str(row[1])
+    #     country = str(row[2])
+    #     lat = str(row[3])
+    #     lon = str(row[4])
+    #     population = int(row[5])
+    #     density = int(row[6])
+    #     timezone = str(row[7])
+    #     # zips = [int(x) for x in row[8]]
+    #     # zips = float(row[8])
+    #     zips = str(row[8])
+    #     data.append([city, state, country, lat, lon, population, density, timezone, zips])
     return cities
 
 cityreader(cities)
