@@ -33,9 +33,12 @@ def cityreader(cities=[]):
     path = "./src/cityreader/cities.csv"
     with open(path, newline='') as file:
         reader = csv.reader(file)
+        firstLine = True
         for row in reader:
-            # print(", ".join(row))
-            x = City(row[0], row[3], row[4])
+            if firstLine:
+                firstLine = False
+                continue
+            x = City(row[0], float(row[3]), float(row[4]))
             cities.append(x)
     
     # file = open(path, newline="")
